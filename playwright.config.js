@@ -29,7 +29,9 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'https://my.bridgefund.nl/nl/nl/request-loan',
     // headless: true,
-    // viewport: { width: 1280, height: 720 },
+    viewport: { width: 1280, height: 807 },
+    screenshot: 'only-on-failure',
+    animations: 'disabled',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
