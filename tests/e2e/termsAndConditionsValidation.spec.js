@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { ContactPage } = require('../pages/ContactPage');
+const { ContactPage } = require('../../pages/ContactPage');
 
 test('user unchecks the terms checkbox and sees validation error after blur', async ({ page }) => {
   const contactPage = new ContactPage(page);

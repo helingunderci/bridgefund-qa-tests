@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { LoanAmountPage } = require('../pages/LoanAmountPage');
+const { LoanAmountPage } = require('../../pages/LoanAmountPage');
 
 test('user can complete loan amount step successfully', async ({ page }) => {
   const loanPage = new LoanAmountPage(page);

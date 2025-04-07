@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { ContactPage } = require('../pages/ContactPage');
+const { ContactPage } = require('../../pages/ContactPage');
 
 test('matching company results appear dynamically as user types', async ({ page }) => {
   const contactPage = new ContactPage(page);
@@ -14,7 +14,7 @@ test('matching company results appear dynamically as user types', async ({ page 
   const results = page.locator('li.cursor-pointer');
   await expect(results.first()).toBeVisible();
 
-  // Optionally: check that result contains "BridgeFund" or similar
+  //check that result contains "BridgeFund" or similar
   const text = await results.first().textContent();
   expect(text.toLowerCase()).toContain('bridge');
 });

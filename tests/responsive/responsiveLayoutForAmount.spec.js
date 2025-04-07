@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { LoanAmountPage } = require('../pages/LoanAmountPage');
+const { LoanAmountPage } = require('../../pages/LoanAmountPage');
 
 const viewports = [
     { name: 'mobile', width: 375, height: 812 },

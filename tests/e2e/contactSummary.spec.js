@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
-const { LoanAmountPage } = require('../pages/LoanAmountPage');
-const { ContactPage } = require('../pages/ContactPage');
-const { getRandomInt, getRandomItem } = require('../utils/utils'); // utility functions
+const { LoanAmountPage } = require('../../pages/LoanAmountPage');
+const { ContactPage } = require('../../pages/ContactPage');
+const { getRandomInt, getRandomItem } = require('../../utils/utils'); // utility functions
 
 test('summary of selected loan details is displayed correctly on contact page', async ({ page }) => {
   const loanAmountPage = new LoanAmountPage(page);

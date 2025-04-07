@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
-const { LoanAmountPage } = require('../pages/LoanAmountPage');
-const { ContactPage } = require('../pages/ContactPage');
-const { getRandomInt, getRandomItem } = require('../utils/utils');
+const { LoanAmountPage } = require('../../pages/LoanAmountPage');
+const { ContactPage } = require('../../pages/ContactPage');
+const { getRandomInt, getRandomItem } = require('../../utils/utils');
 
 test('user completes the full happy flow successfully', async ({ page }) => {
   const loanPage = new LoanAmountPage(page);

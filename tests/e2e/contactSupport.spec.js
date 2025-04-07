@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { ContactPage } = require('../pages/ContactPage');
+const { ContactPage } = require('../../pages/ContactPage');
 
 test('contact support info is visible on contact page', async ({ page }) => {
   const contactPage = new ContactPage(page);

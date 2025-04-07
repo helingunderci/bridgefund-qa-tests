@@ -79,5 +79,10 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 
+  expect: {
+    toHaveScreenshot: {
+      threshold: 0.2 
+    }
+  }
 });
 
