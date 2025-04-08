@@ -74,9 +74,9 @@ npx playwright show-report
 ## Tech Stack
 
 - [Playwright Test](https://playwright.dev/)
-- JavaScript (ES6+)
+- JavaScript
 - Node.js
-- GitHub Actions (optional for CI)
+- GitHub Actions
 
 ---
 
@@ -85,4 +85,3 @@ npx playwright show-report
 - All tests follow **POM pattern** for structure and reuse.
 - Flaky behavior is handled using `waitFor` and proper assertions.
 - CI/CD environments should whitelist test domain (403s may occur otherwise).
-- Snapshots and visual regression testing have been removed from the project.
