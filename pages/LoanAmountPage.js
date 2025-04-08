@@ -23,7 +23,7 @@ class LoanAmountPage {
    * Navigates to the loan amount page.
    */
   async navigate() {
-    await this.page.goto('https://my.bridgefund.nl/nl/nl/request-loan/amount');
+    await this.page.goto('/request-loan/amount');
   }
 
   /**

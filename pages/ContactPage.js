@@ -34,7 +34,7 @@ class ContactPage {
    * Navigates to the contact page URL.
    */
   async navigate() {
-    await this.page.goto('https://my.bridgefund.nl/nl/nl/request-loan/contact');
+    await this.page.goto('/request-loan/contact');
   }
 
   /**

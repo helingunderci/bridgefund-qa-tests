@@ -5,13 +5,15 @@ test('contact support info is visible on contact page', async ({ page }) => {
   const contactPage = new ContactPage(page);
   await contactPage.navigate();
 
-  // Phone number should be visible
-  await expect(page.getByText('085 - 401 6600')).toBeVisible();
+  // Wait for page to fully load
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(800); // stabilize the layout
 
-  // Representative images should be visible (check that at least one <img> is visible)
+  // Check phone number
+  const phoneNumber = page.getByText('085 - 401 6600');
+  await expect(phoneNumber).toBeVisible();
+
+  // Check at least one visible representative image
   const images = page.locator('img');
-  await expect(images.nth(0)).toBeVisible(); // check the first image is visible
-
-  // wait so we can see the page before it closes
-  await page.waitForTimeout(2000); 
+  await expect(images.first()).toBeVisible();
 });

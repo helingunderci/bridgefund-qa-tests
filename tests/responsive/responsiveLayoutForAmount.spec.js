@@ -1,29 +1,31 @@
 const { test, expect } = require('@playwright/test');
 const { LoanAmountPage } = require('../../pages/LoanAmountPage');
-
-const viewports = [
-    { name: 'mobile', width: 375, height: 812 },
-    { name: 'tablet', width: 768, height: 1024 },
-    { name: 'desktop', width: 1280, height: 800 },
-];
+const viewports = require('../../utils/viewports');
 
 for (const viewport of viewports) {
-    test(`loan amount page layout and dropdown works on ${viewport.name}`, async ({ page }) => {
-        await page.setViewportSize({ width: viewport.width, height: viewport.height });
+  test(`Loan Amount page layout and dropdown functionality works on ${viewport.name}`, async ({ page }) => {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
-        const loanPage = new LoanAmountPage(page);
-        await loanPage.navigate();
+    const loanPage = new LoanAmountPage(page);
+    await loanPage.navigate();
 
-        //Core UI visibility checks
-        await expect(loanPage.loanAmountInput).toBeVisible();
-        await expect(page.locator('#select-1')).toBeVisible();
-        await expect(page.locator('input[type="range"]')).toBeVisible();
+    // Assert key UI elements are visible
+    await expect(loanPage.loanAmountInput).toBeVisible();
+    await expect(page.locator('#select-1')).toBeVisible(); // Loan type dropdown
+    await expect(page.locator('input[type="range"]')).toBeVisible(); // Slider
 
-        //Test dropdown open state
-        const dropdown = page.locator('#select-1 .select-label');
-        await dropdown.click();
+    // Open dropdown and check options are visible
+    const dropdownTrigger = page.locator('#select-1 .select-label');
+    await dropdownTrigger.click();
+    const options = page.locator('gr-menu-item');
+    await expect(options.first()).toBeVisible();
 
-        const dropdownOptions = page.locator('gr-menu-item');
-        await expect(dropdownOptions.first()).toBeVisible();
-    });
+    // Select first option and verify it changed
+    const initialText = await dropdownTrigger.textContent();
+    await options.first().click();
+    const updatedText = await dropdownTrigger.textContent();
+
+    expect(updatedText).not.toBe(initialText);
+    await expect(dropdownTrigger).not.toHaveText('Selecteer');
+  });
 }

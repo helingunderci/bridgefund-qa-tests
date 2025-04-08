@@ -6,10 +6,12 @@ test('user can go back to previous step and see preserved form data', async ({ p
 
   await contactPage.navigate();
 
+  // Fill in company and contact details
   await contactPage.searchCompany('BridgeFund');
   await contactPage.selectFirstPerson();
   await contactPage.fillContactDetails('test@example.com', '612345678');
 
+  //Click "Vorige" (Back) to go to loan amount page
   const backButton = page.getByRole('link', { name: 'Vorige' });
   await expect(backButton).toBeVisible();
 
@@ -18,9 +20,7 @@ test('user can go back to previous step and see preserved form data', async ({ p
     backButton.click(),
   ]);
 
-  await page.waitForTimeout(500);
-  
-  // Go back to contact page again
+  await page.waitForTimeout(700);
   await contactPage.navigate();
   await expect(contactPage.emailInput).toHaveValue('test@example.com');
 });

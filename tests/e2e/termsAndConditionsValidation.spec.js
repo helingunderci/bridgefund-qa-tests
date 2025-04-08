@@ -9,17 +9,14 @@ test('user unchecks the terms checkbox and sees validation error after blur', as
   await contactPage.selectFirstPerson();
   await contactPage.fillContactDetails('test@example.com', '612345678');
 
-  // Check and uncheck the Terms checkbox
+  // Check & uncheck Terms checkbox
   await contactPage.checkboxTerms.click(); // check
   await contactPage.checkboxTerms.click(); // uncheck
 
-  // Click outside 
+  // Click outside to trigger blur
   await page.locator('body').click();
 
-  // Wait a bit to allow validation to appear
-  await page.waitForTimeout(500);
-
-  // Assert validation error is visible
+  // Wait for and assert error message
   const errorMessage = page.locator('text=Dit veld is verplicht');
   await expect(errorMessage).toBeVisible();
 });

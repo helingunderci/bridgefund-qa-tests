@@ -6,15 +6,18 @@ test('matching company results appear dynamically as user types', async ({ page 
 
   // Navigate to contact page
   await contactPage.navigate();
+  await page.waitForLoadState('networkidle');
+
+  // Wait for input field to be ready
+  await contactPage.searchInput.waitFor({ state: 'visible', timeout: 5000 });
 
   // Start typing a company name
   await contactPage.searchInput.fill('Bridge');
 
-  // Wait for matching results to appear
+  // Wait for list to appear and stabilize
   const results = page.locator('li.cursor-pointer');
-  await expect(results.first()).toBeVisible();
+  await expect(results.first()).toBeVisible({ timeout: 7000 }); 
 
-  //check that result contains "BridgeFund" or similar
-  const text = await results.first().textContent();
-  expect(text.toLowerCase()).toContain('bridge');
+  // Wait for text content to actually exist (in case of late rendering)
+  await expect(results.first()).toHaveText(/bridge/i, { timeout: 7000 });
 });

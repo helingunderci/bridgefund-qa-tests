@@ -7,10 +7,11 @@ test('user completes the full happy flow successfully', async ({ page }) => {
   const loanPage = new LoanAmountPage(page);
   const contactPage = new ContactPage(page);
 
-  // Step 1 – Navigate to loan amount page
+  //Navigate to loan amount page
   await loanPage.navigate();
+  await page.waitForLoadState('networkidle');
 
-  // Step 2 – Enter loan details
+  //Enter loan details
   const amount = getRandomInt(5000, 250000);
   const purpose = getRandomItem(['Machines', 'Inventaris', 'Marketing']);
 
@@ -21,11 +22,12 @@ test('user completes the full happy flow successfully', async ({ page }) => {
   await loanPage.selectLoanPurpose(purpose);
   await loanPage.clickContinue();
 
-  // Step 3 – Contact page
-  await expect(page).toHaveURL(/contact/);
+  //Contact page
+  await expect(page).toHaveURL(/\/contact$/);
   await contactPage.searchCompany('BridgeFund');
   await contactPage.selectFirstPerson();
   await contactPage.fillContactDetails('hgunderci@gmail.com', '612345678');
   await contactPage.acceptConditions();
+
   await contactPage.continue();
 });
